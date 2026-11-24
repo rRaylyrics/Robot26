@@ -1,0 +1,14 @@
+{
+  "steps": [
+    {
+      "instruction": "Pick up the red empty plastic sample tube from the table and place it into the left bin.",
+      "success_condition": "The red tube is fully inside the left bin and is not held by the robot.",
+      "timeout_s": 60
+    },
+    {
+      "instruction": "Pick up the blue empty plastic sample tube from the table and place it into the right bin.",
+      "success_condition": "The blue tube is fully inside the right bin and is not held by the robot.",
+      "timeout_s": 60
+    }
+  ]
+}
