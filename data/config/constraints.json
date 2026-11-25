@@ -1,0 +1,10 @@
+{
+  "rules": [],
+  "allowed_action_codes": null,
+  "allow_custom": null,
+  "max_steps": null,
+  "max_attempts": null,
+  "max_observations": null,
+  "action_timeout_s": null,
+  "settle_timeout_s": null
+}

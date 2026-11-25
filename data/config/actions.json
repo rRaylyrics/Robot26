@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "code": "M1",
+      "name": "Move_Free",
+      "template": "Move the open grippers above the bottom hem of the {color} shirt. Hover above the fabric.",
+      "physical_criterion": "参考表：末端或底盘在无障碍开阔空间移动超过 10 cm。叠衣验收：空夹爪到达目标衣物下摆上方的预备区，未接触衣物或障碍。用同一坐标系的起止实测位置确认至少一只参与接近的末端位移超过 10 cm。"
+    },
+    {
+      "code": "D1",
+      "name": "Soft_Pull_Open",
+      "template": "Pinch the turned-up hem of the {color} shirt. Pull it away from the neckline, lay it flat, and release it.",
+      "physical_criterion": "参考表：捏住并拉开柔性体。叠衣验收：夹爪捏住上翻下摆的可见自由边，布边随夹爪向远离领口的方向拉开。松手后，下摆平放在台面上，两角露出。"
+    },
+    {
+      "code": "D3",
+      "name": "Cloth_Fold_Unfold",
+      "template": "按当前子任务选用一条。\n对折：Grasp the two bottom corners of the {color} shirt, one in each hand. Fold the hem up to the matching shoulder marks, lay it down, and release.\n铺平：Grasp the two marked hem corners of the {color} shirt. Unfold it away from the neckline, lay it flat, and release it.",
+      "physical_criterion": "参考表：双角抓取衣物或面巾进行对折、铺平或挂上衣架。叠衣验收：对折时，双手各夹一个下摆角，两个角分别对准同侧肩标，落布松手后折形稳定。铺平时，双手夹住两个可见的下摆角，朝远离领口的方向展开，松手后衣物平放、下摆和两角可见。按本轮选定的动作验收。"
+    },
+    {
+      "code": "C1",
+      "name": "Dual_Hold_Move",
+      "template": "Grip both layers at opposite sides of the folded {color} shirt. Lift it with both hands and hold it above the area marked with a {symbol} on the mat.",
+      "physical_criterion": "参考表：双手同时接触同一大物体协同搬运，或一臂固定、一臂操作。叠衣验收：两只夹爪各夹住同一折件一侧的双层布边，协同提起并搬到目标框上方。折件途中保持折形，双手在终点仍夹持。任一侧脱落即判失败。"
+    },
+    {
+      "code": "P2",
+      "name": "Place_Coarse",
+      "template": "Lower the folded {color} shirt onto the mat inside the area marked with a {symbol}. Release it on the mat and move both hands clear.",
+      "physical_criterion": "参考表：将物体平稳放置于指定台面，允许的位置容差大于 2 cm。叠衣验收：折件先落到台面上并由台面支撑，再松开夹爪并移开双手。衣物完整位于正确的目标框内，松手后稳定并保持折形。"
+    }
+  ],
+  "entry_template": {
+    "code": "",
+    "name": "",
+    "template": "",
+    "physical_criterion": ""
+  }
+}

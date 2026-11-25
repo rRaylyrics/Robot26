@@ -1,0 +1,19 @@
+{
+  "original": "",
+  "remaining": "",
+  "candidate_remainder": "",
+  "phase": "",
+  "attempt": {},
+  "attempt_template": {
+    "step": null,
+    "number": null,
+    "kind": "",
+    "action_code": "",
+    "garment_ids": [],
+    "base_instruction": "",
+    "instruction": "",
+    "success_condition": "",
+    "previous_instruction": "",
+    "feedback": null
+  }
+}

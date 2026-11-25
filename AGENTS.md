@@ -36,30 +36,29 @@
 
 ## 技术栈
 
+第二版执行层位于 `action/`。任务规划与指令优化使用千问 AI 平台的 OpenAI 兼容文本接口，动作监督使用支持图片输入的 Qwen 多模态接口。EX001 SDK 提供观测，官方 Client 负责 Wall-X 推理和控制。
+
 ## 项目架构
 
+- 从 `python -m action.agent` 进入第二版。机载任务 FSM 持有执行权。对当前待处理指令，任务 LLM 每轮选择原句直发、库内动作加剩余指令、自定义简单动作加剩余指令，或因现场信息不足而补观测。清晰指令首次执行时原文进入 Client 的 `instruction`。
+- 单动作 FSM 绑定衣物 ID、动作前置条件与验收目标，结合固定模板、现场事实和 Qwen 优化结果生成拆出动作的指令。监督模型对照动作前后多路图像与机械臂反馈，给出完成度、证据和原因。证据不足先复观测；确认失败后才依据原因决定是否修订重试。当前动作通过后才提交剩余指令，最后与原始任务做整体验收。
+- `data/config/` 保存预设提示词、任务约束与原子动作库；`data/task/` 保存任务进度和指令版本的初始格式；`data/scene/` 保存衣物、机械臂和三路图像的格式；`data/logs/` 是事件日志模板。仓库模板使用空值。每次真机运行在 `data/runs/` 建独立目录，保存实际下发指令、验收、帧与日志。
+- 衣物台账分别记录预期数、可见数、确认数以及每件的 ID、类型、外形特征和处理状态（未操作、操作中、已操作完）。遇到遮挡保留身份。按折形和归类的实际证据决定是否完成。注册动作和动态分支以签字锁定的参赛流程为准。
+
 ```mermaid
-flowchart TD
-    WallX["Wall-X API"]
-    Client["官方推理 Client"]
-    Robot["EX001 硬件与控制系统"]
-    World["物理世界"]
-    Model["外部模型服务"]
-    Agent["小组 Agent"]
-    SDK["EX001 SDK Server"]
-    User["操作员"]
-
-    Client -->|"发出请求"| WallX
-    WallX -->|"返回动作序列"| Client
-    Robot -->|"相机画面与双臂状态"| Client
-    Client -->|"插值后的动作"| Robot
-    Robot -->|"执行动作"| World
-    World -->|"现场画面"| Robot
-
-    Agent -->|"按子任务控制Client"| Client
-    Agent -->|"1 任务文字描述，2 子任务成功条件+相机画面"| Model
-    Model -->|"1 子任务列表，2 是否成功+理由"| Agent
-    Robot -->|"相机画面与双臂状态"| SDK
-    SDK -->|"相机画面与双臂状态"| Agent
-    User -->|"人工输入任务、参数，人工停止程序"| Agent
+flowchart LR
+    Operator["操作员"] -->|"任务或停止"| Task["上层任务 FSM"]
+    Task <-->|"直发、拆一步或补观测"| Planner["Qwen 任务规划"]
+    Task <-->|"一个动作与验收结果"| Action["下层动作 FSM"]
+    Action <-->|"模板、现场事实、失败原因"| Optimizer["Qwen 指令优化"]
+    Action <-->|"前后帧、实测状态与判据"| Judge["Qwen 多模态监督"]
+    Action -->|"实发指令、启停"| Client["官方 EX001 Client"]
+    Client <-->|"图像、本体状态与动作块"| Wall["Wall-X API"]
+    Client <-->|"控制与反馈"| Robot["EX001"]
+    Robot --> SDK["EX001 SDK"]
+    SDK -->|"三路图像、双臂状态"| Data["数据层"]
+    Task <--> Data
+    Action <--> Data
 ```
+
+详细设计见[第二版架构方案](EX001-小组Agent架构方案V2.md)。

@@ -1,0 +1,20 @@
+{
+  "expected_count": null,
+  "visible_count": null,
+  "confirmed_count": null,
+  "garments": [],
+  "entry_template": {
+    "id": "",
+    "type": "",
+    "features": {
+      "color": "",
+      "outline": "",
+      "orientation": "",
+      "visible_corners": [],
+      "folding": null,
+      "classification": null
+    },
+    "visible": null,
+    "processing_status": ""
+  }
+}

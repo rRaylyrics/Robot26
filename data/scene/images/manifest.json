@@ -1,0 +1,9 @@
+{
+  "observation_id": null,
+  "captured_at": null,
+  "images": {
+    "front": null,
+    "left_wrist": null,
+    "right_wrist": null
+  }
+}

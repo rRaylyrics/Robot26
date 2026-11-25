@@ -1,4 +1,0 @@
-# Manual verification mode uses the Python standard library only.
-# For --checker vision, install the OFFICIAL x2robot SDK in the proper environment.
-# Its installation guide: https://x2robot.com/docs/quantax1pro/v1/sdk/get-sdk
-# An optional external OpenAI-compatible vision endpoint is also required.
